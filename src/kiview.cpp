@@ -1,12 +1,6 @@
-#include <be/core/lifecycle.hpp>
+#include "kiview_app.hpp"
 
-using namespace be;
-
-///////////////////////////////////////////////////////////////////////////////
 int main(int argc, char** argv) {
-   BE_IGNORE2(argc, argv);
-   
-   be::CoreInitLifecycle init;
-
-   return 0;
-};
+   KiViewApp app(argc, argv);
+   return app();
+}
