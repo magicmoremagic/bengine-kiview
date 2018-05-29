@@ -39,10 +39,6 @@ private:
    glm::vec2 relative_cursor_;
    glm::vec2 cursor_;
    bool dragging_ = false;
-
-   int highlight_ = 0;
-
-   std::size_t frame_ = 0;
 };
 
 #endif

@@ -336,12 +336,6 @@ void KiViewApp::run_() {
             app.enable_autoscale_ = true;
             app.enable_autocenter_ = true;
             app.autoscale_();
-         } else if (key == GLFW_KEY_KP_SUBTRACT) {
-            app.highlight_ = app.highlight_ - 1;
-            std::cout << app.highlight_ << std::endl;
-         } else if (key == GLFW_KEY_KP_ADD) {
-            app.highlight_ = app.highlight_ + 1;
-            std::cout << app.highlight_ << std::endl;
          }
       }
    });
@@ -365,8 +359,6 @@ void KiViewApp::run_() {
 
       glMatrixMode(GL_MODELVIEW);
       glLoadMatrixf(glm::value_ptr(view));
-
-      ++frame_;
 
       glBegin(GL_LINES);
       glColor3f(0.25f, 0.f, 0.f);
@@ -415,8 +407,8 @@ void KiViewApp::run_() {
 
             glBegin(GL_LINES);
             glColor4fv(glm::value_ptr(color));
-            //glVertex2fv(glm::value_ptr(start));
-            //glVertex2fv(glm::value_ptr(end));
+            glVertex2fv(glm::value_ptr(start));
+            glVertex2fv(glm::value_ptr(end));
             glEnd();
          } else if (type == gr_line_tag) {
             vec2 start = get_point(node, "start");
@@ -475,57 +467,24 @@ void KiViewApp::run_() {
                            points.push_back(vec2(dvec2(pt[1].value(), pt[2].value())));
                         }
                      }
-                     //std::vector<triangle> tris = triangulate_polygon(std::vector<vec2>(points.rbegin(), points.rend()));
-                     std::vector<triangle> tris = triangulate_polygon(points, highlight_);
+                     std::vector<triangle> tris = triangulate_polygon(points);
 
                      glColor4fv(glm::value_ptr(color));
                      
-                     
-                     
-
-                     /*glBegin(GL_LINE_STRIP);
-                     std::size_t f = (frame_) % points.size();
-                     for (std::size_t n = 0; n < points.size(); ++n) {
-                        if (n > f) {
-                           break;
-                        }
-                        glVertex2fv(glm::value_ptr(points[n]));
-                     }
-                     glEnd();*/
-
-                     
+                     glBegin(GL_TRIANGLES);
                      for (triangle& tri : tris) {
-
-                        glBegin(GL_LINE_LOOP);
                         glVertex2fv(glm::value_ptr(tri.v[0]));
                         glVertex2fv(glm::value_ptr(tri.v[1]));
                         glVertex2fv(glm::value_ptr(tri.v[2]));
-                        glEnd();
-                        glBegin(GL_TRIANGLES);
-                        glVertex2fv(glm::value_ptr(tri.v[0]));
-                        glVertex2fv(glm::value_ptr(tri.v[1]));
-                        glVertex2fv(glm::value_ptr(tri.v[2]));
-                        glEnd();
                      }
+                     glEnd();
                      
                   }
                }
             }
          }
       }
-/*
-      glColor4f(1.f, 1.f, 1.f, 0.25f);
 
-      std::vector<triangle> tris = triangulate_polygon(poly_);
-      for (triangle& t : tris) {
-         glBegin(GL_TRIANGLES);
-         glColor4f(1, 1, 1, 0.33f);
-         glVertex2fv(glm::value_ptr(t.v[0]));
-         glVertex2fv(glm::value_ptr(t.v[1]));
-         glVertex2fv(glm::value_ptr(t.v[2]));
-         glEnd();
-      }
-*/
       glfwSwapBuffers(wnd);
    }
 
