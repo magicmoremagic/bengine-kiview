@@ -209,7 +209,7 @@ inline Node::const_iterator find(const Node& node, be::F64 car) {
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-Node parse(be::SV text, be::util::StringInterner& si) {
+inline Node parse(be::SV text, be::util::StringInterner& si) {
    using iterator = be::SV::const_iterator;
 
    Node root = Node();
@@ -338,7 +338,7 @@ Node parse(be::SV text, be::util::StringInterner& si) {
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-std::ostream& operator<<(std::ostream& os, const Node& node) {
+inline std::ostream& operator<<(std::ostream& os, const Node& node) {
    auto config = be::get_ostream_config(os);
    switch (node.type()) {
       case Node::node_type::text:

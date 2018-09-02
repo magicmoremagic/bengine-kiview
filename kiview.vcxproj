@@ -54,12 +54,19 @@
   <ItemGroup>
     <ClCompile Include="src\kiview.cpp" />
     <ClCompile Include="src\kiview_app.cpp" />
+    <ClCompile Include="src\pcb_helper.cpp" />
+    <ClCompile Include="src\polygon.cpp" />
+    <ClCompile Include="src\render_layer.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="include\dcel.hpp" />
+    <ClInclude Include="include\circle.hpp" />
     <ClInclude Include="include\kiview_app.hpp" />
+    <ClInclude Include="include\layer_config.hpp" />
     <ClInclude Include="include\node.hpp" />
+    <ClInclude Include="include\pcb_helper.hpp" />
     <ClInclude Include="include\polygon.hpp" />
+    <ClInclude Include="include\render_layer.hpp" />
+    <ClInclude Include="include\triangle.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
